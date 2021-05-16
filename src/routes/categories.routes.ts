@@ -1,25 +1,34 @@
 import { Router } from "express";
+import multer from "multer";
 
-import { Category } from "../model/Category";
+// import { CategoriesRepository } from "../modules/cars/repositories/implementations/CategoriesRepository";
+import { createCategoryController } from "../modules/cars/useCases/createCategory";
+import { importCategoryController } from "../modules/cars/useCases/importCategory";
+import { listCategoriesController } from "../modules/cars/useCases/listCategories";
+// import { PostgresCategoriesRepository } from "../repositories/PostgresCategoriesRepository";
+// import { CreateCategoryService } from "../modules/cars/useCases/createCategory/CreateCategoryUseCase";
 
 const categoriesRoutes = Router();
 
-const categories: Category[] = [];
+const upload = multer({
+    dest: "./tmp",
+});
+// const categories: Category[] = [];
+
+// const categoriesRepository = new CategoriesRepository();
+// qualquer subclasse pode ser usada neste repositorio
+// const categoriesRepository = new PostgresCategoriesRepository();
 
 categoriesRoutes.post("/", (request, response) => {
-    const { name, description } = request.body;
+    return createCategoryController.handle(request, response);
+});
 
-    const category = new Category();
+categoriesRoutes.get("/", (request, response) => {
+    return listCategoriesController.handle(request, response);
+});
 
-    Object.assign(category, {
-        name,
-        description,
-        created_at: new Date(),
-    });
-
-    categories.push(category);
-
-    return response.status(201).json({ category });
+categoriesRoutes.post("/import", upload.single("file"), (request, response) => {
+    return importCategoryController.handle(request, response);
 });
 
 export { categoriesRoutes };

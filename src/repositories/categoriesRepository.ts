@@ -1,3 +1,0 @@
-class CategoriesRepository {}
-
-export { CategoriesRepository };

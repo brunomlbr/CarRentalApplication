@@ -32,6 +32,9 @@ class ImportCategoryUseCase {
                 })
                 // return categories;
                 .on("end", () => {
+                    // removendo file da pasta
+                    fs.promises.unlink(file.path);
+
                     resolve(categories);
                 })
                 .on("error", (err) => {

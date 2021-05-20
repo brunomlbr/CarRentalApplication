@@ -1,27 +1,19 @@
 import { Router } from "express";
 import multer from "multer";
 
-// import { CategoriesRepository } from "../modules/cars/repositories/implementations/CategoriesRepository";
-import { createCategoryController } from "../modules/cars/useCases/createCategory";
+import { CreateCategoryController } from "../modules/cars/useCases/createCategory/CreateCategoryController";
 import { importCategoryController } from "../modules/cars/useCases/importCategory";
 import { listCategoriesController } from "../modules/cars/useCases/listCategories";
-// import { PostgresCategoriesRepository } from "../repositories/PostgresCategoriesRepository";
-// import { CreateCategoryService } from "../modules/cars/useCases/createCategory/CreateCategoryUseCase";
 
 const categoriesRoutes = Router();
 
 const upload = multer({
     dest: "./tmp",
 });
-// const categories: Category[] = [];
 
-// const categoriesRepository = new CategoriesRepository();
-// qualquer subclasse pode ser usada neste repositorio
-// const categoriesRepository = new PostgresCategoriesRepository();
+const createCategoryController = new CreateCategoryController();
 
-categoriesRoutes.post("/", (request, response) => {
-    return createCategoryController.handle(request, response);
-});
+categoriesRoutes.post("/", createCategoryController.handle);
 
 categoriesRoutes.get("/", (request, response) => {
     return listCategoriesController.handle(request, response);

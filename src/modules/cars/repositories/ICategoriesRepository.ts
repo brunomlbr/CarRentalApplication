@@ -1,4 +1,4 @@
-import { Category } from "../entities/Category";
+import { Category } from "../infra/typeorm/entities/Category";
 // esse arquivo é um contrato, é um sub tipo da classe
 // DTO => Data transfer objetc
 interface ICreateCategoryDTO {

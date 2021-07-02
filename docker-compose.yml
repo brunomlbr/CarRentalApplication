@@ -16,7 +16,7 @@ services:
             - pgdata:/data/postgres
         #network_mode: host
     app:
-        build:   .
+        build: .
         container_name: rentx
         restart: always
         ports: 

@@ -14,18 +14,18 @@ import { Connection, createConnection, getConnectionOptions } from "typeorm";
 // });
 
 export default async (host = "database"): Promise<Connection> => {
-    const defaultOptions = await getConnectionOptions();
+  const defaultOptions = await getConnectionOptions();
 
-    return createConnection(
-        Object.assign(defaultOptions, {
-            host: process.env.NODE_ENV === "test" ? "localhost" : host,
-            // se meu process.env.NODE_ENV === "test"
-            // então eu quero que vc use um banco de dados,
-            // senão eu quero que vc use o que vem como default
-            database:
-                process.env.NODE_ENV === "test"
-                    ? "rentx_test"
-                    : defaultOptions.database,
-        })
-    );
+  return createConnection(
+    Object.assign(defaultOptions, {
+      host: process.env.NODE_ENV === "test" ? "localhost" : host,
+      // se meu process.env.NODE_ENV === "test"
+      // então eu quero que vc use um banco de dados,
+      // senão eu quero que vc use o que vem como default
+      database:
+        process.env.NODE_ENV === "test"
+          ? "rentx_test"
+          : defaultOptions.database,
+    })
+  );
 };

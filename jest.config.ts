@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { pathsToModuleNameMapper } from "ts-jest/utils";
 
 import { compilerOptions } from "./tsconfig.json";
@@ -21,12 +22,15 @@ export default {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
+  collectCoverage: true,
   // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
+  collectCoverageFrom: ["<rootDir>/src/modules/**/UseCases/**/*.ts"],
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
+  coverageDirectory: "coverage",
   // coverageDirectory: undefined,
 
   // An array of regexp pattern strings used to skip coverage collection
@@ -38,6 +42,7 @@ export default {
   coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
+  coverageReporters: ["text-summary", "lcov"],
   // coverageReporters: [
   //   "json",
   //   "text",
@@ -85,7 +90,7 @@ export default {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {prefix: "<rootDir>/src/"},),
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: "<rootDir>/src/" },),
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],

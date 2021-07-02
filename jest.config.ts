@@ -26,7 +26,7 @@ export default {
   // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: ["<rootDir>/src/modules/**/UseCases/**/*.ts"],
+  collectCoverageFrom: ["<rootDir>/src/modules/**/useCases/**/*.ts"],
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
